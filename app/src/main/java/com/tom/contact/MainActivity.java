@@ -20,12 +20,12 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         ContentResolver cr = getContentResolver();
         Cursor c = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                new String[]{ContactsContract.Contacts._ID, ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER},
+                new String[]{ContactsContract.Contacts._ID, ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER, ContactsContract.Contacts.PHOTO_URI},
                 null, null, null);
-        String[] from = {ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
-        int[] to = {android.R.id.text1, android.R.id.text2};
+        String[] from = {ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER, ContactsContract.Contacts.PHOTO_URI};
+        int[] to = {R.id.row_name, R.id.row_number, R.id.row_image};
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                this, android.R.layout.simple_list_item_2, c , from , to, 1);
+                this, R.layout.contact_row, c , from , to, 1);
         ListView list = (ListView) findViewById(R.id.list);
         list.setAdapter(adapter);
 //        Cursor c = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
